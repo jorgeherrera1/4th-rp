@@ -1,0 +1,27 @@
+{
+  "name": "4th-rp",
+  "version": "0.0.1",
+  "description": "4th Source Resource Planning App",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeherrera1/4th-rp.git"
+  },
+  "keywords": [
+    "resource",
+    "planning"
+  ],
+  "author": "Jorge Herrera <jorge.herrera.cabrera@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jorgeherrera1/4th-rp/issues"
+  },
+  "homepage": "https://github.com/jorgeherrera1/4th-rp#readme",
+  "dependencies": {
+    "bower": "^1.4.1"
+  }
+}
