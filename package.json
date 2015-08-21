@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jorgeherrera1/4th-rp.git"
+    "url": "https://github.com/jorgeherrera1/4th-rp.git"
   },
   "keywords": [
     "resource",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jorgeherrera1/4th-rp#readme",
   "dependencies": {
-    "bower": "^1.4.1"
+    "bower": "^1.4.1",
+    "gulp": "^3.9.0"
   }
 }

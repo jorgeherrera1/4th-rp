@@ -1,0 +1,23 @@
+{
+  "name": "4th-rp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jorgeherrera1/4th-rp",
+  "authors": [
+    "Jorge Herrera <jorge.herrera.cabrera@gmail.com>"
+  ],
+  "description": "4th Source Resource Planning App",
+  "keywords": [
+    "resource",
+    "planning"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.2",
+    "jquery": "~2.1.4"
+  }
+}
