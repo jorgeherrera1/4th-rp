@@ -10,7 +10,7 @@
   <title>4th Source - Resource Plan</title>
 </head>
 <body>
-  <div>
+  <div id="worksheet">
     <div>
       <input type="text" placeholder="Name">
     </div>
@@ -21,6 +21,18 @@
       <input type="number" value="0">
       <input type="number" value="0">
     </div>
+    <button>Add Resource</button>
   </div>
+  <!-- build:js js/lib.js -->
+  <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+  <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+  <script type="text/javascript" src="js/lib/backbone-min.js"></script>
+  <script type="text/javascript" src="js/lib/moment.min.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/main.js -->
+  <script type="text/javascript" src="js/models/booking.js"></script>
+  <script type="text/javascript" src="js/collections/plan.js"></script>
+  <script type="text/javascript" src="js/views/worksheet-view.js"></script>
+  <!-- endbuild -->
 </body>
 </html>

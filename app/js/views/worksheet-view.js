@@ -4,6 +4,16 @@ var App = App || {};
   'use strict';
 
   App.WorksheetView = Backbone.View.extend({
-    el: '#worksheet'
+
+    el: '#worksheet',
+
+    events: {
+      'click #add-resource': 'addResource'
+    },
+
+    addResource: function() {
+      alert('add resource');
+    }
+
   });
 })();
