@@ -4,6 +4,6 @@ var App = App || {};
   'use strict';
 
   App.Booking = Backbone.Collection.extend({
-    model: App.Booking;
+    model: App.Booking
   });
 })();

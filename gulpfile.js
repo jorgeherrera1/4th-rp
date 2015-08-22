@@ -29,7 +29,7 @@ gulp.task('html', function() {
         .pipe(gulpif('lib/*.js', concat('lib.js')))
         // uglify main js
         // TODO: uglify main.js after concat
-        .pipe(gulpif(['models/*.js', 'collections/*.js', 'views/*.js'], concat('main.js')))
+        .pipe(gulpif(['models/*.js', 'collections/*.js', 'views/*.js', 'app.js'], concat('main.js')))
         .pipe(assets.restore())
         .pipe(useref())
         // minify html
