@@ -5,6 +5,20 @@ var ESC_KEY = 27;
 $(function () {
 	'use strict';
 
-	// kick things off by creating the `App`
-	new App.WorksheetView();
+	var bookings = new App.Bookings();
+
+  new App.BookingsView({
+		collection: bookings
+	});
+
+	bookings.add([
+		{
+			name: 'Jorge',
+			bookings: [40, 40, 40, 20]
+		},
+		{
+			name: 'Luis',
+			bookings: [20, 20, 20, 10]
+		}
+	]);
 });

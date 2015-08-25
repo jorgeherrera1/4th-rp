@@ -10,18 +10,29 @@
   <title>4th Source - Resource Plan</title>
 </head>
 <body>
-  <div id="worksheet">
-    <div>
-      <input type="text" placeholder="Name">
-    </div>
-    <div>
-      <input type="number" value="0">
-      <input type="number" value="0">
-      <input type="number" value="0">
-      <input type="number" value="0">
-      <input type="number" value="0">
-    </div>
+  <div id="bookings">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>8/22/2015</th>
+          <th>8/29/2015</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
+    <script type="text/template" id="resource-template">
+      <td><%= name %></td>
+      <% for (var booking in bookings) { %>
+      <td><%= bookings[booking] %></td>
+      <% } %>
+    </script>
+
     <button id="add-resource">Add Resource</button>
+    <button id="add-week">Add Week</button>
   </div>
   <!-- build:js js/lib.js -->
   <script type="text/javascript" src="js/lib/jquery.min.js"></script>
@@ -30,9 +41,10 @@
   <script type="text/javascript" src="js/lib/moment.min.js"></script>
   <!-- endbuild -->
   <!-- build:js js/main.js -->
-  <script type="text/javascript" src="js/models/booking.js"></script>
-  <script type="text/javascript" src="js/collections/plan.js"></script>
-  <script type="text/javascript" src="js/views/worksheet-view.js"></script>
+  <script type="text/javascript" src="js/models/resource.js"></script>
+  <script type="text/javascript" src="js/collections/bookings.js"></script>
+  <script type="text/javascript" src="js/views/bookings-view.js"></script>
+  <script type="text/javascript" src="js/views/resource-view.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <!-- endbuild -->
 </body>
