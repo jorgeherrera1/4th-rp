@@ -10,6 +10,15 @@
   <title>4th Source - Resource Plan</title>
 </head>
 <body>
+  <div>
+    <form id="project">
+      <label for="project-name">Project:</label>
+      <input id="project-name" type="text" required>
+      <label for="project-start-date">Start Date:</label>
+      <input id="project-start-date" type="date" required>
+    </form>
+  </div>
+  <br>
   <div id="bookings">
     <table>
       <thead>
@@ -41,8 +50,10 @@
   <script type="text/javascript" src="js/lib/moment.min.js"></script>
   <!-- endbuild -->
   <!-- build:js js/main.js -->
+  <script type="text/javascript" src="js/models/project.js"></script>
   <script type="text/javascript" src="js/models/resource.js"></script>
   <script type="text/javascript" src="js/collections/bookings.js"></script>
+  <script type="text/javascript" src="js/views/project-view.js"></script>
   <script type="text/javascript" src="js/views/bookings-view.js"></script>
   <script type="text/javascript" src="js/views/resource-view.js"></script>
   <script type="text/javascript" src="js/app.js"></script>

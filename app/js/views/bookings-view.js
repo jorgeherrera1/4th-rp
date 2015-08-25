@@ -10,11 +10,20 @@ var App = App || {};
     initialize: function() {
       this.$table = this.$('table tbody');
       this.listenTo(this.collection, 'add', this.addResourceToView);
+
+      this.render();
     },
 
     events: {
       'click #add-resource': 'addResourceButtonClicked',
       'click #add-week': 'addWeekButtonClicked'
+    },
+
+    render: function() {
+      var that = this;
+      this.collection.each(function(resource) {
+        that.addResourceToView(resource);
+      });
     },
 
     addResourceButtonClicked: function() {

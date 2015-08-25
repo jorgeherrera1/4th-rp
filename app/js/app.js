@@ -5,20 +5,24 @@ var ESC_KEY = 27;
 $(function () {
 	'use strict';
 
-	var bookings = new App.Bookings();
-
-  new App.BookingsView({
-		collection: bookings
-	});
-
-	bookings.add([
+	// initialize project and bookings
+  App.project = new App.Project();
+	App.bookings = new App.Bookings([
 		{
-			name: 'Jorge',
-			bookings: [40, 40, 40, 20]
+			name: 'Resource 1',
+			bookings: [0, 0, 0, 0]
 		},
 		{
-			name: 'Luis',
-			bookings: [20, 20, 20, 10]
+			name: 'Resource 2',
+			bookings: [0, 0, 0, 0]
 		}
 	]);
+
+  new App.ProjectView({
+		model: App.project
+	});
+
+	new App.BookingsView({
+		collection: App.bookings
+	});
 });
