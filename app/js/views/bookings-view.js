@@ -13,20 +13,17 @@ var App = App || {};
     },
 
     events: {
-      'click #add-resource': 'addResource',
-      'click #add-week': 'addWeek'
+      'click #add-resource': 'addResourceButtonClicked',
+      'click #add-week': 'addWeekButtonClicked'
     },
 
-    addResource: function() {
-      this.collection.add({
-        name: 'Resource',
-        bookings: [0, 0, 0, 0]
-      });
+    addResourceButtonClicked: function() {
+      this.collection.addResource();
     },
 
-    addWeek: function() {
+    addWeekButtonClicked: function() {
       this.collection.each(function(resource) {
-        resource.extendBookingsOneWeek();
+        resource.extendBookings(1);
       });
     },
 

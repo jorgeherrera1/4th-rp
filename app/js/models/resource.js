@@ -6,14 +6,21 @@ var App = App || {};
   App.Resource = Backbone.Model.extend({
 
     defaults: {
-      name: '',
-      bookings: [0]
+      name: 'Resource',
+      bookings: []
     },
 
-    extendBookingsOneWeek: function() {
-      var bookings = _.clone(this.get('bookings'));
-      bookings.push(0);
-      this.set('bookings', bookings);
+    extendBookings: function(numberOfWeeks) {
+      var currentBookings = this.get('bookings');
+      var newBookings = new Array(numberOfWeeks);
+      while(numberOfWeeks--) newBookings[numberOfWeeks] = 0;
+
+      this.set('bookings', currentBookings.concat(newBookings));
+    },
+
+    numberOfWeeksBooked: function() {
+      var bookings = this.get('bookings');
+      return bookings.length;
     }
 
   });
