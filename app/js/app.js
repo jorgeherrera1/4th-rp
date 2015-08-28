@@ -10,11 +10,11 @@ $(function () {
 	App.bookings = new App.Bookings([
 		{
 			name: 'Resource 1',
-			bookings: [0, 0, 0, 0]
+			bookings: [40, 0, 0, 0]
 		},
 		{
 			name: 'Resource 2',
-			bookings: [0, 0, 0, 0]
+			bookings: [0, 40, 0, 0]
 		}
 	]);
 

@@ -36,8 +36,11 @@
     <script type="text/template" id="resource-template">
       <td><%= name %></td>
       <% for (var booking in bookings) { %>
-      <td><%= bookings[booking] %></td>
+      <td>
+        <input type="number" value="<%= bookings[booking] %>" data-week-number="<%= booking %>">
+      </td>
       <% } %>
+      <td><%= totalHoursBooked %></td>
     </script>
 
     <button id="add-resource">Add Resource</button>

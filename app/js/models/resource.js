@@ -10,6 +10,22 @@ var App = App || {};
       bookings: []
     },
 
+    initialize: function() {
+      this.on('change:bookings', this.calculateTotalHoursBooked);
+
+      this.calculateTotalHoursBooked();
+    },
+
+    calculateTotalHoursBooked: function() {
+      var bookings = this.get('bookings');
+      
+      var totalHoursBooked = _.reduce(bookings, function(totalHours, hours) {
+        return totalHours + hours;
+      }, 0);
+
+      this.set('totalHoursBooked', totalHoursBooked);
+    },
+
     extendBookings: function(numberOfWeeks) {
       var currentBookings = this.get('bookings');
       var newBookings = new Array(numberOfWeeks);
@@ -21,6 +37,16 @@ var App = App || {};
     numberOfWeeksBooked: function() {
       var bookings = this.get('bookings');
       return bookings.length;
+    },
+
+    changeBooking: function(weekNumber, newBooking) {
+      var bookings = this.get('bookings');
+
+      if (bookings[weekNumber] !== newBooking) {
+        bookings[weekNumber] = newBooking;
+
+        this.trigger('change:bookings');
+      }
     }
 
   });
