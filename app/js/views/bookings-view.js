@@ -7,8 +7,14 @@ var App = App || {};
 
     el: '#bookings',
 
-    initialize: function() {
-      this.$table = this.$('table tbody');
+    initialize: function(options) {
+      this.project = options.project;
+      this.weekEndingsTemplate = _.template($('#week-endings-template').html());
+
+      this.$thead = this.$('table thead');
+      this.$tbody = this.$('table tbody');
+
+      this.listenTo(this.project, 'change:startDate', this.renderWeekEndings);
       this.listenTo(this.collection, 'add', this.addResourceToView);
 
       this.render();
@@ -20,6 +26,20 @@ var App = App || {};
     },
 
     render: function() {
+      this.renderWeekEndings();
+      this.renderResources();
+    },
+
+    renderWeekEndings: function() {
+      var numberOfWeeks = this.collection.numberOfWeeks();
+      var weekEndings = this.project.calculateWeekEndings(numberOfWeeks);
+
+      this.$thead.html(this.weekEndingsTemplate({
+        weekEndings: weekEndings
+      }));
+    },
+
+    renderResources: function() {
       var that = this;
       this.collection.each(function(resource) {
         that.addResourceToView(resource);
@@ -34,6 +54,8 @@ var App = App || {};
       this.collection.each(function(resource) {
         resource.extendBookings(1);
       });
+
+      this.renderWeekEndings();
     },
 
     addResourceToView: function(resource) {
@@ -41,7 +63,7 @@ var App = App || {};
         model: resource
       })
 
-      this.$table.append(view.render().el);
+      this.$tbody.append(view.render().el);
     }
 
   });

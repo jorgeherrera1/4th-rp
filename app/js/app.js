@@ -23,6 +23,7 @@ $(function () {
 	});
 
 	new App.BookingsView({
+		project: App.project,
 		collection: App.bookings
 	});
 });
