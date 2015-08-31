@@ -54,10 +54,9 @@ var App = App || {};
       var allBookings = this.collection.pluck('bookings');
       var bookingTotals = _.reduce(allBookings, calculateBookingTotals, []);
 
-      bookingTotals[bookingTotals.length] = grandTotal;
-
       this.$tfoot.html(this.bookingTotalsTemplate({
-        bookingTotals: bookingTotals
+        bookingTotals: bookingTotals,
+        grandTotal: grandTotal
       }))
 
       function calculateBookingTotals(totals, bookings) {

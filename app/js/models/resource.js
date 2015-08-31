@@ -7,6 +7,7 @@ var App = App || {};
 
     defaults: {
       name: 'Resource',
+      role: '',
       bookings: []
     },
 

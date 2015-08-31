@@ -36,6 +36,7 @@
   <script type="text/template" id="week-endings-template">
     <tr>
       <th>Resource Name</th>
+      <th>Role</th>
       <% for (var weekEnding in weekEndings) { %>
       <td><%= weekEndings[weekEnding] %></td>
       <% } %>
@@ -44,7 +45,12 @@
   </script>
 
   <script type="text/template" id="resource-template">
-    <td><%= name %></td>
+    <td>
+      <input type="text" class="name" value="<%= name %>">
+    </td>
+    <td>
+      <input type="text" list="roles" class="role" value="<%= role %>">
+    </td>
     <% for (var booking in bookings) { %>
     <td>
       <input type="number" value="<%= bookings[booking] %>" data-week-number="<%= booking %>">
@@ -55,11 +61,21 @@
 
   <script type="text/template" id="booking-totals-template">
     <td></td>
+    <td></td>
     <% for (var weekNumber in bookingTotals) { %>
     <td><%= bookingTotals[weekNumber] %></td>
     <% } %>
-    <td></td>
+    <td><%= grandTotal %></td>
   </script>
+
+  <datalist id="roles">
+    <option value="PM">PM</option>
+    <option value="BA">BA</option>
+    <option value="Tech Lead">Tech Lead</option>
+    <option value="Developer">Developer</option>
+    <option value="QA Lead">QA Lead</option>
+    <option value="QA">QA</option>
+  </datalist>
 
   <!-- build:js js/lib.js -->
   <script type="text/javascript" src="js/lib/jquery.min.js"></script>

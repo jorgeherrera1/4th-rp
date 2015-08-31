@@ -10,7 +10,9 @@ var App = App || {};
     template: _.template($('#resource-template').html()),
 
     events: {
-      'change input': 'bookingChanged'
+      'change input.name': 'nameChanged',
+      'change input.role': 'roleChanged',
+      'change input[data-week-number]': 'bookingChanged'
     },
 
     initialize: function() {
@@ -21,6 +23,14 @@ var App = App || {};
       this.$el.html(this.template(this.model.toJSON()));
 
       return this;
+    },
+
+    nameChanged: function(evt) {
+      this.model.set('name', evt.currentTarget.value);
+    },
+
+    roleChanged: function(evt) {
+      this.model.set('role', evt.currentTarget.value);
     },
 
     bookingChanged: function(evt) {
