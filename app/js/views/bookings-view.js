@@ -10,9 +10,11 @@ var App = App || {};
     initialize: function(options) {
       this.project = options.project;
       this.weekEndingsTemplate = _.template($('#week-endings-template').html());
+      this.bookingTotalsTemplate = _.template($('#booking-totals-template').html());
 
       this.$thead = this.$('table thead');
       this.$tbody = this.$('table tbody');
+      this.$tfoot = this.$('table tfoot');
 
       this.listenTo(this.project, 'change:startDate', this.renderWeekEndings);
       this.listenTo(this.collection, 'add', this.addResourceToView);
@@ -28,6 +30,7 @@ var App = App || {};
     render: function() {
       this.renderWeekEndings();
       this.renderResources();
+      this.renderBookingTotals();
     },
 
     renderWeekEndings: function() {
@@ -46,6 +49,31 @@ var App = App || {};
       });
     },
 
+    renderBookingTotals: function() {
+      var grandTotal = 0;
+      var allBookings = this.collection.pluck('bookings');
+      var bookingTotals = _.reduce(allBookings, calculateBookingTotals, []);
+
+      bookingTotals[bookingTotals.length] = grandTotal;
+
+      this.$tfoot.html(this.bookingTotalsTemplate({
+        bookingTotals: bookingTotals
+      }))
+
+      function calculateBookingTotals(totals, bookings) {
+        _.each(bookings, function(booking, weekNumber) {
+          if (!totals[weekNumber]) {
+            totals[weekNumber] = 0;
+          }
+
+          totals[weekNumber] += booking;
+          grandTotal += booking;
+        })
+
+        return totals;
+      }
+    },
+
     addResourceButtonClicked: function() {
       this.collection.addResource();
     },
@@ -56,12 +84,14 @@ var App = App || {};
       });
 
       this.renderWeekEndings();
+      this.renderBookingTotals();
     },
 
     addResourceToView: function(resource) {
       var view = new App.ResourceView({
         model: resource
-      })
+      });
+      view.on('bookingChanged', this.renderBookingTotals, this);
 
       this.$tbody.append(view.render().el);
     }

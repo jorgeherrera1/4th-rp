@@ -29,6 +29,7 @@ var App = App || {};
       var newBooking = parseInt($input.val());
 
       this.model.changeBooking(weekNumber, newBooking);
+      this.trigger('bookingChanged');
     }
 
   });

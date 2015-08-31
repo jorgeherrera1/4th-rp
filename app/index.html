@@ -23,6 +23,8 @@
     <table>
       <thead>
       </thead>
+      <tfoot>
+      </tfoot>
       <tbody>
       </tbody>
     </table>
@@ -49,6 +51,14 @@
     </td>
     <% } %>
     <td><%= totalHoursBooked %></td>
+  </script>
+
+  <script type="text/template" id="booking-totals-template">
+    <td></td>
+    <% for (var weekNumber in bookingTotals) { %>
+    <td><%= bookingTotals[weekNumber] %></td>
+    <% } %>
+    <td></td>
   </script>
 
   <!-- build:js js/lib.js -->

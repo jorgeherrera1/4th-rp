@@ -18,7 +18,7 @@ var App = App || {};
 
     calculateTotalHoursBooked: function() {
       var bookings = this.get('bookings');
-      
+
       var totalHoursBooked = _.reduce(bookings, function(totalHours, hours) {
         return totalHours + hours;
       }, 0);
