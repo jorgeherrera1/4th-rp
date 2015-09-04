@@ -18,6 +18,7 @@ var App = App || {};
 
       this.listenTo(this.project, 'change:startDate', this.renderWeekEndings);
       this.listenTo(this.collection, 'add', this.addResourceToView);
+      this.listenTo(this.collection, 'change:bookings', this.renderBookingTotals);
 
       this.render();
     },
@@ -51,26 +52,8 @@ var App = App || {};
 
     renderBookingTotals: function() {
       var grandTotal = 0;
-      var allBookings = this.collection.pluck('bookings');
-      var bookingTotals = _.reduce(allBookings, calculateBookingTotals, []);
-
-      this.$tfoot.html(this.bookingTotalsTemplate({
-        bookingTotals: bookingTotals,
-        grandTotal: grandTotal
-      }))
-
-      function calculateBookingTotals(totals, bookings) {
-        _.each(bookings, function(booking, weekNumber) {
-          if (!totals[weekNumber]) {
-            totals[weekNumber] = 0;
-          }
-
-          totals[weekNumber] += booking;
-          grandTotal += booking;
-        })
-
-        return totals;
-      }
+      var bookingTotals = this.collection.calculateTotals();
+      this.$tfoot.html(this.bookingTotalsTemplate(bookingTotals));
     },
 
     addResourceButtonClicked: function() {
