@@ -15,10 +15,6 @@ var App = App || {};
       'change input[data-week-number]': 'bookingChanged'
     },
 
-    initialize: function() {
-      this.listenTo(this.model, 'change:bookings', this.render);
-    },
-
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
 
@@ -39,7 +35,7 @@ var App = App || {};
       var newBooking = parseInt($input.val());
 
       this.model.changeBooking(weekNumber, newBooking);
-      this.trigger('bookingChanged');
+      this.$('.resource-booking-totals').html(this.model.get('totalHoursBooked').toString());
     }
 
   });

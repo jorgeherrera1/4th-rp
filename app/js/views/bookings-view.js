@@ -73,7 +73,6 @@ var App = App || {};
       var view = new App.ResourceView({
         model: resource
       });
-      view.on('bookingChanged', this.renderBookingTotals, this);
 
       this.$tbody.append(view.render().el);
     }

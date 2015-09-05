@@ -53,10 +53,10 @@
     </td>
     <% for (var booking in bookings) { %>
     <td>
-      <input type="number" value="<%= bookings[booking] %>" data-week-number="<%= booking %>">
+      <input type="text" value="<%= bookings[booking] %>" data-week-number="<%= booking %>">
     </td>
     <% } %>
-    <td><%= totalHoursBooked %></td>
+    <td class="resource-booking-totals"><%= totalHoursBooked %></td>
   </script>
 
   <script type="text/template" id="booking-totals-template">
