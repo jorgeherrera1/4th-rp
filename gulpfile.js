@@ -16,7 +16,8 @@ gulp.task('lib', function() {
     ['bower_components/jquery/dist/jquery.min.js',
      'bower_components/underscore/underscore-min.js',
      'bower_components/backbone/backbone-min.js',
-     'bower_components/moment/min/moment.min.js'])
+     'bower_components/moment/min/moment.min.js',
+     'bower_components/moment-range/dist/moment-range.min.js'])
      .pipe(gulp.dest('app/js/lib'));
 });
 
