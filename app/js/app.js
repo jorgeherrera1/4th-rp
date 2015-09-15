@@ -15,6 +15,10 @@ $(function () {
 		{
 			name: 'Resource 2',
 			bookings: [0, 40, 0, 0]
+		},
+		{
+			name: 'Resource 3',
+			bookings: [0, 40, 40, 40]
 		}
 	]);
 
