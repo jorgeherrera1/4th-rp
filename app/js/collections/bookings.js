@@ -9,6 +9,14 @@ var App = App || {};
 
     comparator: function(booking) {
       return booking.weekEnding.getTime();
+    },
+
+    totalHoursBooked: function() {
+      var sumFn = function(total, hours) {
+        return total + hours;
+      };
+
+      return this.pluck('hours').reduce(sumFn, 0);
     }
 
   });
