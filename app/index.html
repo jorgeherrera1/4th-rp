@@ -10,15 +10,6 @@
   <title>4th Source - Resource Plan App</title>
 </head>
 <body>
-  <div>
-    <form id="project">
-      <label for="project-name">Project:</label>
-      <input id="project-name" type="text" required>
-      <label for="project-start-date">Start Date:</label>
-      <input id="project-start-date" type="date" required>
-    </form>
-  </div>
-  <br>
   <div id="bookings">
     <table>
       <thead>
@@ -32,41 +23,6 @@
     <button id="add-resource">Add Resource</button>
     <button id="add-week">Add Week</button>
   </div>
-
-  <script type="text/template" id="week-endings-template">
-    <tr>
-      <th>Resource Name</th>
-      <th>Role</th>
-      <% for (var weekEnding in weekEndings) { %>
-      <td><%= weekEndings[weekEnding] %></td>
-      <% } %>
-      <td>Total Hours</td>
-    </tr>
-  </script>
-
-  <script type="text/template" id="resource-template">
-    <td>
-      <input type="text" class="name" value="<%= name %>">
-    </td>
-    <td>
-      <input type="text" list="roles" class="role" value="<%= role %>">
-    </td>
-    <% for (var booking in bookings) { %>
-    <td>
-      <input type="text" value="<%= bookings[booking] %>" data-week-number="<%= booking %>">
-    </td>
-    <% } %>
-    <td class="resource-booking-totals"><%= totalHoursBooked %></td>
-  </script>
-
-  <script type="text/template" id="booking-totals-template">
-    <td></td>
-    <td></td>
-    <% for (var weekNumber in bookingTotals) { %>
-    <td><%= bookingTotals[weekNumber] %></td>
-    <% } %>
-    <td><%= grandTotal %></td>
-  </script>
 
   <datalist id="roles">
     <option value="PM">PM</option>
@@ -86,12 +42,9 @@
   <script type="text/javascript" src="js/lib/moment-range.min.js"></script>
   <!-- endbuild -->
   <!-- build:js js/main.js -->
-  <script type="text/javascript" src="js/models/project.js"></script>
   <script type="text/javascript" src="js/models/resource.js"></script>
+  <script type="text/javascript" src="js/models/booking.js"></script>
   <script type="text/javascript" src="js/collections/bookings.js"></script>
-  <script type="text/javascript" src="js/views/project-view.js"></script>
-  <script type="text/javascript" src="js/views/bookings-view.js"></script>
-  <script type="text/javascript" src="js/views/resource-view.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <!-- endbuild -->
 </body>

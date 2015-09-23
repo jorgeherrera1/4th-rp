@@ -3,11 +3,11 @@ var App = App || {};
 (function() {
   'use strict';
 
-  App.Resource = Backbone.Model.extend({
+  App.Booking = Backbone.Model.extend({
 
     defaults: {
-      name: 'Resource',
-      role: ''
+      weekEnding: undefined,
+      hours: 0
     }
 
   });
