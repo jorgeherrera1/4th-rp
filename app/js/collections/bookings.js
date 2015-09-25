@@ -8,7 +8,7 @@ var App = App || {};
     model: App.Booking,
 
     comparator: function(booking) {
-      return booking.weekEnding.getTime();
+      return booking.get('weekEnding').getTime();
     },
 
     totalHoursBooked: function() {

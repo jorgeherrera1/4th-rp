@@ -11,12 +11,20 @@ var App = App || {};
     },
 
     validate: function(attrs) {
-      if (!_.isNumber(attrs.hours)) {
-        return 'Booking must be a number';
+      if (!_.isUndefined(attrs.weekEnding)) {
+        if (!_.isDate(attrs.weekEnding)) {
+          return 'Week ending must be a date';
+        }
       }
 
-      if (attrs.hours < 0) {
-        return 'Booking cannot be negative';
+      if (!_.isUndefined(attrs.hours)) {
+        if (!_.isNumber(attrs.hours)) {
+          return 'Booking must be a number';
+        }
+
+        if (attrs.hours < 0) {
+          return 'Booking cannot be negative';
+        }
       }
     }
 

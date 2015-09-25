@@ -10,6 +10,13 @@ describe('Booking Model', function() {
     expect(booking.get('hours')).toBe(0);
   });
 
+  it('should be invalid if week ending is not a date', function() {
+    booking.set({weekEnding: '10/12/2015'}, {validate:true});
+
+    expect(booking.validationError).not.toBeNull();
+    expect(booking.validationError).toBe('Week ending must be a date');
+  });
+
   it('should be invalid if hours are non numeric', function() {
     booking.set({hours: '8h'}, {validate:true});
 
