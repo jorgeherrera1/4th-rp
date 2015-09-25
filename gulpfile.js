@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     minifyHtml = require('gulp-minify-html'),
     del = require('del'),
     browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    karmaServer = require('karma').Server;
 
 // copy lib dependencies
 gulp.task('lib', function() {
@@ -40,15 +41,29 @@ gulp.task('html', function() {
 });
 
 // watch file for changes and reload
-gulp.task('serve', function () {
+gulp.task('serve', function(done) {
     browserSync({
         notify: false,
         logPrefix: '4th-rp',
         server: ['tmp', 'app'],
-        port: 8000
+        port: 8000,
+        browser: 'google chrome'
     });
 
     gulp.watch(['app/**/*.html'], reload);
+});
+
+gulp.task('test', function(done) {
+  new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('tdd', function(done) {
+  new karmaServer({
+    configFile: __dirname + '/karma.conf.js'
+  }, done).start();
 });
 
 // clean output directory
