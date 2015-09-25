@@ -38,4 +38,14 @@ describe('Booking Model', function() {
     expect(booking.get('hours')).toBe(8);
   });
 
+  it('should have all hours in the same month', function() {
+    booking.set({
+      weekEnding: new Date(2015, 8, 26),
+      hours: 40
+    });
+
+    var hoursPerMonth = booking.hoursPerMonth();
+    console.log(hoursPerMonth);
+  });
+
 });

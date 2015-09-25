@@ -26,6 +26,26 @@ var App = App || {};
           return 'Booking cannot be negative';
         }
       }
+    },
+
+    hoursPerMonth: function() {
+      var hours = this.get('hours');
+      var weekEnding = moment(this.get('weekEnding'));
+      var weekStarting = weekEnding.startOf('week');
+      var hoursPerMonth = {};
+
+      if (weekStarting.month() === weekEnding.month()) {
+        hoursPerMonth[weekStarting.format('MMMM')] = hours;
+        return hoursPerMonth;
+      }
+
+      moment.range(weekStarting, weekEnding).by('days', function(day) {
+        if (day.day() === 0 || day.day() === 6) {
+          return;
+        }
+
+        
+      })
     }
 
   });
