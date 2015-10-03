@@ -5,7 +5,11 @@ var App = App || {};
 
   App.Bookings = Backbone.Collection.extend({
 
-    model: App.Booking
+    model: App.Booking,
+
+    comparator: function(booking) {
+      return booking.get('date').getTime();
+    }
 
   });
 })();
