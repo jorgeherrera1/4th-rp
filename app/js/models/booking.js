@@ -6,46 +6,13 @@ var App = App || {};
   App.Booking = Backbone.Model.extend({
 
     defaults: {
-      weekEnding: undefined,
       hours: 0
     },
 
     validate: function(attrs) {
-      if (!_.isUndefined(attrs.weekEnding)) {
-        if (!_.isDate(attrs.weekEnding)) {
-          return 'Week ending must be a date';
-        }
+      if (!attrs.date) {
+        return 'Booking date is required';
       }
-
-      if (!_.isUndefined(attrs.hours)) {
-        if (!_.isNumber(attrs.hours)) {
-          return 'Booking must be a number';
-        }
-
-        if (attrs.hours < 0) {
-          return 'Booking cannot be negative';
-        }
-      }
-    },
-
-    hoursPerMonth: function() {
-      var hours = this.get('hours');
-      var weekEnding = moment(this.get('weekEnding'));
-      var weekStarting = weekEnding.startOf('week');
-      var hoursPerMonth = {};
-
-      if (weekStarting.month() === weekEnding.month()) {
-        hoursPerMonth[weekStarting.format('MMMM')] = hours;
-        return hoursPerMonth;
-      }
-
-      moment.range(weekStarting, weekEnding).by('days', function(day) {
-        if (day.day() === 0 || day.day() === 6) {
-          return;
-        }
-
-        
-      })
     }
 
   });
