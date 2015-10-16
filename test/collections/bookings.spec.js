@@ -24,8 +24,11 @@ describe('Bookings Collection', function() {
       {date: new Date(2015, 4, 20), hours: 16},
       {date: new Date(2015, 4, 25), hours: 2},
     ]);
+    var hoursByMonth = bookings.hoursByMonth();
 
-    console.log(bookings.hoursByMonth());
+    expect(hoursByMonth['March']).toBe(12);
+    expect(hoursByMonth['April']).toBe(0);
+    expect(hoursByMonth['May']).toBe(18);
   });
 
 });
