@@ -9,6 +9,27 @@ var App = App || {};
 
     comparator: function(booking) {
       return booking.get('date').getTime();
+    },
+
+    hoursByMonth: function() {
+      return this.chain()
+                 .map(function(booking) {
+                   var b = {};
+                   b.month = moment(booking.get('date')).format('MMMM')
+                   b[b.month] = booking.get('hours');
+                   return b;
+                 })
+                 .reduce(function(hoursByMonth, booking) {
+                   var month = booking.month;
+                   if (_.has(hoursByMonth, month)) {
+                     hoursByMonth[month] += booking[month];
+                   } else {
+                     hoursByMonth[month] = booking[month];
+                   }
+
+                   return hoursByMonth;
+                 }, {})
+                 .value();
     }
 
   });

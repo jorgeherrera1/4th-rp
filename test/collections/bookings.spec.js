@@ -16,4 +16,16 @@ describe('Bookings Collection', function() {
     expect(bookings.at(2).get('date')).toEqual(new Date(2015, 5, 15));
   });
 
+  it('should calculate hours by month', function() {
+    bookings.add([
+      {date: new Date(2015, 2, 1), hours: 8},
+      {date: new Date(2015, 2, 10), hours: 4},
+      {date: new Date(2015, 3, 15), hours: 0},
+      {date: new Date(2015, 4, 20), hours: 16},
+      {date: new Date(2015, 4, 25), hours: 2},
+    ]);
+
+    console.log(bookings.hoursByMonth());
+  });
+
 });
