@@ -29,6 +29,12 @@ describe('Bookings Collection', function() {
     expect(totalHours).toBe(30);
   })
 
+  it('should calculate total hours as zero when no bookings', function() {
+    var totalHours = bookings.totalHours();
+
+    expect(totalHours).toBe(0);
+  })
+
   it('should calculate total hours by month', function() {
     bookings.add([
       {date: new Date(2015, 2, 1), hours: 8},
