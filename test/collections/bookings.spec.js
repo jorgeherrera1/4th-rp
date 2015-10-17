@@ -16,7 +16,20 @@ describe('Bookings Collection', function() {
     expect(bookings.at(2).get('date')).toEqual(new Date(2015, 5, 15));
   });
 
-  it('should calculate hours by month', function() {
+  it('should calculate total hours', function() {
+    bookings.add([
+      {date: new Date(2015, 2, 1), hours: 2},
+      {date: new Date(2015, 2, 10), hours: 4},
+      {date: new Date(2015, 3, 15), hours: 6},
+      {date: new Date(2015, 4, 20), hours: 8},
+      {date: new Date(2015, 4, 25), hours: 10},
+    ]);
+    var totalHours = bookings.totalHours();
+
+    expect(totalHours).toBe(30);
+  })
+
+  it('should calculate total hours by month', function() {
     bookings.add([
       {date: new Date(2015, 2, 1), hours: 8},
       {date: new Date(2015, 2, 10), hours: 4},
@@ -24,11 +37,11 @@ describe('Bookings Collection', function() {
       {date: new Date(2015, 4, 20), hours: 16},
       {date: new Date(2015, 4, 25), hours: 2},
     ]);
-    var hoursByMonth = bookings.hoursByMonth();
+    var totalHoursByMonth = bookings.totalHoursByMonth();
 
-    expect(hoursByMonth['March']).toBe(12);
-    expect(hoursByMonth['April']).toBe(0);
-    expect(hoursByMonth['May']).toBe(18);
+    expect(totalHoursByMonth['March']).toBe(12);
+    expect(totalHoursByMonth['April']).toBe(0);
+    expect(totalHoursByMonth['May']).toBe(18);
   });
 
 });

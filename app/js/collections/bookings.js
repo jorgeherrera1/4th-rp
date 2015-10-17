@@ -11,7 +11,13 @@ var App = App || {};
       return booking.get('date').getTime();
     },
 
-    hoursByMonth: function() {
+    totalHours: function() {
+      return this.reduce(function(hours, booking) {
+        return hours + booking.get('hours');
+      }, 0);
+    },
+
+    totalHoursByMonth: function() {
       return this.chain()
                  .map(function(booking) {
                    var b = {};
