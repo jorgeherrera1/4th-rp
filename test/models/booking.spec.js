@@ -11,4 +11,16 @@ describe('Booking Model', function() {
     expect(booking.validationError).toBe('Booking date is required');
   });
 
+  it('should return month of booking', function() {
+    booking.set('date', new Date('10/5/2015'));
+
+    expect(booking.month()).toBe('October');
+  });
+
+  it('should return week ending of booking', function() {
+    booking.set('date', new Date('10/19/2015'));
+
+    expect(booking.weekEnding()).toBe('10/24/2015');
+  });
+
 });

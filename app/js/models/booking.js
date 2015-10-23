@@ -13,6 +13,14 @@ var App = App || {};
       if (!attrs.date) {
         return 'Booking date is required';
       }
+    },
+
+    month: function() {
+      return moment(this.get('date')).format('MMMM');
+    },
+
+    weekEnding: function() {
+      return moment(this.get('date')).endOf('week').format('MM/DD/YYYY');
     }
 
   });
