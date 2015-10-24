@@ -52,6 +52,22 @@ var App = App || {};
 
     totalHoursByMonth: function() {
       return totalHoursBy('month', this);
+    },
+
+    addWeek: function() {
+      var lastBookingDate = this.last().get('date');
+      var mondayOfNextWeek = moment(lastBookingDate).day(8);
+      var fridayOfNextWeek = moment(mondayOfNextWeek).add(4, 'days');
+      var weekDaysRange = moment.range(mondayOfNextWeek, fridayOfNextWeek);
+
+      var bookings = this; 
+      weekDaysRange.by('days', function(moment) {
+        console.log(moment.toDate());
+
+        bookings.add({
+          date: moment.toDate()
+        });
+      });
     }
 
   });

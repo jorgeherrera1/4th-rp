@@ -66,4 +66,31 @@ describe('Bookings Collection', function() {
     expect(totalHoursByMonth[2]).toEqual({month: 'May', hours: 18});
   });
 
+  it('should add one week', function() {
+    bookings.add([
+      {date: new Date('10/20/2015'), hours: 8},
+      {date: new Date('10/21/2015'), hours: 8},
+      {date: new Date('10/22/2015'), hours: 10},
+      {date: new Date('10/26/2015'), hours: 4}
+    ]);
+
+    bookings.addWeek();
+
+    expect(bookings.length).toBe(9);
+    expect(bookings.at(4).get('date')).toEqual(new Date('11/2/2015'));
+    expect(bookings.at(5).get('date')).toEqual(new Date('11/3/2015'));
+    expect(bookings.at(6).get('date')).toEqual(new Date('11/4/2015'));
+    expect(bookings.at(7).get('date')).toEqual(new Date('11/5/2015'));
+    expect(bookings.at(8).get('date')).toEqual(new Date('11/6/2015'));
+
+    bookings.addWeek();
+
+    expect(bookings.length).toBe(14);
+    expect(bookings.at(9).get('date')).toEqual(new Date('11/9/2015'));
+    expect(bookings.at(10).get('date')).toEqual(new Date('11/10/2015'));
+    expect(bookings.at(11).get('date')).toEqual(new Date('11/11/2015'));
+    expect(bookings.at(12).get('date')).toEqual(new Date('11/12/2015'));
+    expect(bookings.at(13).get('date')).toEqual(new Date('11/13/2015'));
+  });
+
 });
