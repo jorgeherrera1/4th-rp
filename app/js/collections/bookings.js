@@ -3,6 +3,35 @@ var App = App || {};
 (function() {
   'use strict';
 
+  function totalHoursBy(interval, bookings) {
+    var byInterval = function(booking) {
+      var b = {};
+      b[interval] = booking[interval].apply(booking);
+      b.hours = booking.get('hours');
+
+      return b;
+    };
+
+    var groupByIntervalAndSumHours = function(totalHoursByInterval, intervalHours) {
+      var hoursByInterval = _.find(totalHoursByInterval, function(item) {
+        return item[interval] === intervalHours[interval];
+      });
+
+      if (hoursByInterval) {
+        hoursByInterval.hours += intervalHours.hours;
+      } else {
+        totalHoursByInterval.push(intervalHours);
+      }
+
+      return totalHoursByInterval;
+    };
+
+    return bookings.chain()
+                   .map(byInterval)
+                   .reduce(groupByIntervalAndSumHours, [])
+                   .value();
+  }
+
   App.Bookings = Backbone.Collection.extend({
 
     model: App.Booking,
@@ -18,24 +47,7 @@ var App = App || {};
     },
 
     totalHoursByMonth: function() {
-      return this.chain()
-                 .map(function(booking) {
-                   var b = {};
-                   b.month = moment(booking.get('date')).format('MMMM')
-                   b[b.month] = booking.get('hours');
-                   return b;
-                 })
-                 .reduce(function(hoursByMonth, booking) {
-                   var month = booking.month;
-                   if (_.has(hoursByMonth, month)) {
-                     hoursByMonth[month] += booking[month];
-                   } else {
-                     hoursByMonth[month] = booking[month];
-                   }
-
-                   return hoursByMonth;
-                 }, {})
-                 .value();
+      return totalHoursBy('month', this);
     }
 
   });
