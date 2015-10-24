@@ -35,6 +35,21 @@ describe('Bookings Collection', function() {
     expect(totalHours).toBe(0);
   })
 
+  it('should calculate total hours by week ending', function() {
+    bookings.add([
+      {date: new Date('9/28/2015'), hours: 8},
+      {date: new Date('10/1/2015'), hours: 8},
+      {date: new Date('10/3/2015'), hours: 0},
+      {date: new Date('10/5/2015'), hours: 10},
+      {date: new Date('10/9/2015'), hours: 4},
+    ]);
+    var totalHoursByWeekEnding = bookings.totalHoursByWeekEnding();
+
+    expect(totalHoursByWeekEnding.length).toBe(2);
+    expect(totalHoursByWeekEnding[0]).toEqual({weekEnding: '10/03/2015', hours: 16});
+    expect(totalHoursByWeekEnding[1]).toEqual({weekEnding: '10/10/2015', hours: 14});
+  });
+
   it('should calculate total hours by month', function() {
     bookings.add([
       {date: new Date('3/1/2015'), hours: 8},

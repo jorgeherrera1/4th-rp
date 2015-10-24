@@ -46,6 +46,10 @@ var App = App || {};
       }, 0);
     },
 
+    totalHoursByWeekEnding: function() {
+      return totalHoursBy('weekEnding', this);
+    },
+
     totalHoursByMonth: function() {
       return totalHoursBy('month', this);
     }
