@@ -7,7 +7,7 @@ var App = App || {};
 
     defaults: {
       name: 'Resource',
-      role: ''
+      role: 'Developer'
     },
 
     initialize: function() {
