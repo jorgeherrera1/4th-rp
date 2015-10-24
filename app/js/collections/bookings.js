@@ -40,6 +40,14 @@ var App = App || {};
       return booking.get('date').getTime();
     },
 
+    weekEndings: function() {
+      var weekEndings = this.map(function(booking) {
+        return booking.weekEnding();
+      });
+
+      return _.uniq(weekEndings);
+    },
+
     totalHours: function() {
       return this.reduce(function(hours, booking) {
         return hours + booking.get('hours');
@@ -60,10 +68,8 @@ var App = App || {};
       var fridayOfNextWeek = moment(mondayOfNextWeek).add(4, 'days');
       var weekDaysRange = moment.range(mondayOfNextWeek, fridayOfNextWeek);
 
-      var bookings = this; 
+      var bookings = this;
       weekDaysRange.by('days', function(moment) {
-        console.log(moment.toDate());
-
         bookings.add({
           date: moment.toDate()
         });

@@ -16,6 +16,23 @@ describe('Bookings Collection', function() {
     expect(bookings.at(2).get('date')).toEqual(new Date(2015, 5, 15));
   });
 
+  it('should return the week endings', function() {
+    bookings.add([
+      {date: new Date('10/21/2015'), hours: 6},
+      {date: new Date('10/7/2015'), hours: 2},
+      {date: new Date('10/14/2015'), hours: 4},
+      {date: new Date('10/12/2015'), hours: 4},
+      {date: new Date('10/8/2015'), hours: 2}
+    ]);
+
+    var weekEndings = bookings.weekEndings();
+
+    expect(weekEndings.length).toBe(3);
+    expect(weekEndings[0]).toBe('10/10/2015');
+    expect(weekEndings[1]).toBe('10/17/2015');
+    expect(weekEndings[2]).toBe('10/24/2015');
+  });
+
   it('should calculate total hours', function() {
     bookings.add([
       {date: new Date(2015, 2, 1), hours: 2},
