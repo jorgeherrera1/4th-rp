@@ -63,17 +63,27 @@ var App = App || {};
     },
 
     addWeek: function() {
-      var lastBookingDate = this.last().get('date');
-      var mondayOfNextWeek = moment(lastBookingDate).day(8);
-      var fridayOfNextWeek = moment(mondayOfNextWeek).add(4, 'days');
-      var weekDaysRange = moment.range(mondayOfNextWeek, fridayOfNextWeek);
+      this.addWeeks(1);
+    },
 
-      var bookings = this;
-      weekDaysRange.by('days', function(moment) {
-        bookings.add({
-          date: moment.toDate()
+    addWeeks: function(numberOfWeeks) {
+      if (_.isUndefined(numberOfWeeks)) {
+        numberOfWeeks = 1;
+      }
+
+      for (var weekNumber = 1; weekNumber <= numberOfWeeks; weekNumber++) {
+        var lastBookingDate = this.last().get('date');
+        var mondayOfNextWeek = moment(lastBookingDate).day(8);
+        var fridayOfNextWeek = moment(mondayOfNextWeek).add(4, 'days');
+        var weekDaysRange = moment.range(mondayOfNextWeek, fridayOfNextWeek);
+
+        var bookings = this;
+        weekDaysRange.by('days', function(moment) {
+          bookings.add({
+            date: moment.toDate()
+          });
         });
-      });
+      }
     }
 
   });
