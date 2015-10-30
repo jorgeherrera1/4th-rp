@@ -127,4 +127,22 @@ describe('Bookings Collection', function() {
 
   });
 
+  it('should create an array of bookings given date and number of weeks', function() {
+    var bookings = App.Bookings.newFromDate(new Date('09/29/2015'), 2);
+
+    expect(bookings.length).toBe(10);
+    // first week
+    expect(bookings[0].date).toEqual(new Date('9/28/2015'));
+    expect(bookings[1].date).toEqual(new Date('9/29/2015'));
+    expect(bookings[2].date).toEqual(new Date('9/30/2015'));
+    expect(bookings[3].date).toEqual(new Date('10/1/2015'));
+    expect(bookings[4].date).toEqual(new Date('10/2/2015'));
+    // second week
+    expect(bookings[5].date).toEqual(new Date('10/5/2015'));
+    expect(bookings[6].date).toEqual(new Date('10/6/2015'));
+    expect(bookings[7].date).toEqual(new Date('10/7/2015'));
+    expect(bookings[8].date).toEqual(new Date('10/8/2015'));
+    expect(bookings[9].date).toEqual(new Date('10/9/2015'));
+  });
+
 });
