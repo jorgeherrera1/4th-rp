@@ -17,7 +17,8 @@ var App = App || {};
       this.$el.html(this.template({
         name: this.model.get('name'),
         role: this.model.get('role'),
-        bookingsByWeekEnding: this.model.get('bookings').totalHoursByWeekEnding()
+        bookingsByWeekEnding: this.model.get('bookings').totalHoursByWeekEnding(),
+        totalHours: this.model.get('bookings').totalHours()
       }));
 
       return this;
