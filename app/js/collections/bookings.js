@@ -70,12 +70,12 @@ var App = App || {};
       var lastBookingDate = this.last().get('date');
       var nextWeek = moment(lastBookingDate).add(1, 'week');
 
-      this.add(App.Bookings.newFromDate(nextWeek, numberOfWeeks));
+      this.add(App.Bookings.newFromDate(nextWeek, numberOfWeeks).models);
     }
 
   }, {
     newFromDate: function(date, numberOfWeeks) {
-      var bookings = [];
+      var bookings = new App.Bookings();
       var startDate = moment(date).day('Monday');
       var endDate = moment(startDate).add(numberOfWeeks - 1, 'weeks').day('Friday');
 
@@ -85,7 +85,7 @@ var App = App || {};
           return;
         }
 
-        bookings.push({
+        bookings.add({
           date: day.toDate()
         });
       });

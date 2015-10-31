@@ -10,7 +10,7 @@
   <title>4th Source - Resource Plan App</title>
 </head>
 <body>
-  <div id="bookings">
+  <div id="bookings-worksheet">
     <table>
       <thead>
       </thead>
@@ -24,15 +24,19 @@
     <button id="add-week">Add Week</button>
   </div>
 
-  <datalist id="roles">
-    <option value="PM">PM</option>
-    <option value="BA">BA</option>
-    <option value="Tech Lead">Tech Lead</option>
-    <option value="Tech Lead">Dev Lead</option>
-    <option value="Developer">Developer</option>
-    <option value="QA Lead">QA Lead</option>
-    <option value="QA">QA</option>
-  </datalist>
+  <script type="text/template" id="resource-bookings-template">
+    <td>
+      <input type="text" class="resource-name" value="<%= name %>">
+    </td>
+    <td>
+      <input type="text" class="resource-role" value="<%= role %>">
+    </td>
+    <% for (var idx in bookingsByWeekEnding) { %>
+    <td>
+      <input type="text" value="<%= bookingsByWeekEnding[idx].hours %>">
+    </td>
+    <% } %>
+  </script>
 
   <!-- build:js js/lib.js -->
   <script type="text/javascript" src="js/lib/jquery.min.js"></script>
@@ -44,7 +48,10 @@
   <!-- build:js js/main.js -->
   <script type="text/javascript" src="js/models/resource.js"></script>
   <script type="text/javascript" src="js/models/booking.js"></script>
+  <script type="text/javascript" src="js/collections/resources.js"></script>
   <script type="text/javascript" src="js/collections/bookings.js"></script>
+  <script type="text/javascript" src="js/views/resource-bookings.js"></script>
+  <script type="text/javascript" src="js/views/bookings-worksheet.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <!-- endbuild -->
 </body>

@@ -8,10 +8,6 @@ var App = App || {};
     defaults: {
       name: 'Resource',
       role: 'Developer'
-    },
-
-    initialize: function() {
-      this.bookings = new App.Bookings();
     }
 
   });

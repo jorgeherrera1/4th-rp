@@ -22,7 +22,7 @@ module.exports = function(config) {
       'app/js/lib/moment-range.min.js',
       'app/js/models/*.js',
       'app/js/collections/*.js',
-      'app/js/views/*.js',
+      // 'app/js/views/*.js',
       'app/js/*.js',
       'test/**/*spec.js'
     ],
