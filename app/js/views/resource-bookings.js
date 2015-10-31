@@ -9,9 +9,10 @@ var App = App || {};
 
     template: _.template($('#resource-bookings-template').html()),
 
-    // events: {
-      //'change input.resource-name': 'nameWasChanged'
-    //},
+    events: {
+      'change input.resource-name': 'nameWasChanged',
+      'change input.resource-role': 'roleWasChanged',
+    },
 
     render: function() {
       this.$el.html(this.template({
@@ -22,6 +23,14 @@ var App = App || {};
       }));
 
       return this;
+    },
+
+    nameWasChanged: function(evt) {
+      this.model.set('name', evt.currentTarget.value);
+    },
+
+    roleWasChanged: function(evt) {
+      this.model.set('role', evt.currentTarget.value);
     }
 
   });
