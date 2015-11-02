@@ -33,11 +33,11 @@
     </td>
     <% for (var idx in bookingsByWeekEnding) { %>
     <td>
-      <input type="text" value="<%= bookingsByWeekEnding[idx].hours %>">
+      <input type="text" data-week-ending="<%= bookingsByWeekEnding[idx].weekEnding %>" value="<%= bookingsByWeekEnding[idx].hours %>">
     </td>
     <% } %>
     <td>
-      <%= totalHours %>
+      <span class="resource-total-hours"><%= totalHours %></span>
     </td>
   </script>
 

@@ -12,6 +12,11 @@ var App = App || {};
     events: {
       'change input.resource-name': 'nameWasChanged',
       'change input.resource-role': 'roleWasChanged',
+      'change input[data-week-ending]': 'bookingWasChanged'
+    },
+
+    initialize: function() {
+      this.on('bookingChanged', this.renderTotalHours);
     },
 
     render: function() {
@@ -25,12 +30,29 @@ var App = App || {};
       return this;
     },
 
+    renderTotalHours: function() {
+      this.$('.resource-total-hours').html(this.model.get('bookings').totalHours());
+    },
+
     nameWasChanged: function(evt) {
       this.model.set('name', evt.currentTarget.value);
     },
 
     roleWasChanged: function(evt) {
       this.model.set('role', evt.currentTarget.value);
+    },
+
+    bookingWasChanged: function(evt) {
+      var $input = $(evt.currentTarget);
+      var weekEnding = $input.data('week-ending');
+      var hours = parseInt($input.val());
+
+      var bookings = this.model.get('bookings').filter(function(booking) {
+        return booking.weekEnding() === weekEnding;
+      });
+
+      _.invoke(bookings, 'set', 'hours', hours/5);
+      this.trigger('bookingChanged');
     }
 
   });
