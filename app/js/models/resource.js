@@ -1,9 +1,9 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
 
-  App.Resource = Backbone.Model.extend({
+  ResourcePlan.Resource = Backbone.Model.extend({
 
     defaults: {
       name: 'Resource',

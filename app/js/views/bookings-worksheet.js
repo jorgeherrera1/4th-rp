@@ -1,9 +1,9 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
 
-  App.BookingsWorksheetView = Backbone.View.extend({
+  ResourcePlan.BookingsWorksheetView = Backbone.View.extend({
 
     el: '#bookings-worksheet',
 
@@ -24,7 +24,7 @@ var App = App || {};
     renderResourceBookings: function() {
       var that = this;
       this.collection.each(function(resource) {
-        var resourceBookingsView = new App.ResourceBookingsView({
+        var resourceBookingsView = new ResourcePlan.ResourceBookingsView({
           model: resource
         });
 

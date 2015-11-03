@@ -1,4 +1,4 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
@@ -32,9 +32,9 @@ var App = App || {};
                    .value();
   }
 
-  App.Bookings = Backbone.Collection.extend({
+  ResourcePlan.Bookings = Backbone.Collection.extend({
 
-    model: App.Booking,
+    model: ResourcePlan.Booking,
 
     comparator: function(booking) {
       return booking.get('date').getTime();
@@ -70,12 +70,12 @@ var App = App || {};
       var lastBookingDate = this.last().get('date');
       var nextWeek = moment(lastBookingDate).add(1, 'week');
 
-      this.add(App.Bookings.newFromDate(nextWeek, numberOfWeeks).models);
+      this.add(ResourcePlan.Bookings.newFromDate(nextWeek, numberOfWeeks).models);
     }
 
   }, {
     newFromDate: function(date, numberOfWeeks) {
-      var bookings = new App.Bookings();
+      var bookings = new ResourcePlan.Bookings();
       var startDate = moment(date).day('Monday');
       var endDate = moment(startDate).add(numberOfWeeks - 1, 'weeks').day('Friday');
 

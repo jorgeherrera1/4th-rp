@@ -1,11 +1,11 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
 
-  App.Resources = Backbone.Collection.extend({
+  ResourcePlan.Resources = Backbone.Collection.extend({
 
-    model: App.Resource
+    model: ResourcePlan.Resource
 
   });
 })();

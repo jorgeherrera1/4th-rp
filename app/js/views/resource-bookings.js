@@ -1,9 +1,9 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
 
-  App.ResourceBookingsView = Backbone.View.extend({
+  ResourcePlan.ResourceBookingsView = Backbone.View.extend({
 
     tagName: 'tr',
 

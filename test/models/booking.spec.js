@@ -3,7 +3,7 @@ describe('Booking Model', function() {
   var booking;
 
   beforeEach(function() {
-    booking = new App.Booking();
+    booking = new ResourcePlan.Booking();
   });
 
   it('should be invalid when no booking date is set', function() {

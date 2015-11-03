@@ -1,9 +1,9 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 
 (function() {
   'use strict';
 
-  App.Booking = Backbone.Model.extend({
+  ResourcePlan.Booking = Backbone.Model.extend({
 
     defaults: {
       hours: 0

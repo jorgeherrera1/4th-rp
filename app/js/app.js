@@ -1,4 +1,4 @@
-var App = App || {};
+var ResourcePlan = ResourcePlan || {};
 var ENTER_KEY = 13;
 var ESC_KEY = 27;
 
@@ -7,14 +7,14 @@ $(function () {
 
 	var today = new Date();
 	var numberOfWeeks = 4;
-	var resources = new App.Resources([
-		new App.Resource({bookings:App.Bookings.newFromDate(today, numberOfWeeks)}),
-		new App.Resource({bookings:App.Bookings.newFromDate(today, numberOfWeeks)}),
-		new App.Resource({bookings:App.Bookings.newFromDate(today, numberOfWeeks)}),
-		new App.Resource({bookings:App.Bookings.newFromDate(today, numberOfWeeks)})
+	var resources = new ResourcePlan.Resources([
+		new ResourcePlan.Resource({bookings:ResourcePlan.Bookings.newFromDate(today, numberOfWeeks)}),
+		new ResourcePlan.Resource({bookings:ResourcePlan.Bookings.newFromDate(today, numberOfWeeks)}),
+		new ResourcePlan.Resource({bookings:ResourcePlan.Bookings.newFromDate(today, numberOfWeeks)}),
+		new ResourcePlan.Resource({bookings:ResourcePlan.Bookings.newFromDate(today, numberOfWeeks)})
 	]);
 
-	new App.BookingsWorksheetView({
+	new ResourcePlan.BookingsWorksheetView({
 		collection: resources
 	});
 
