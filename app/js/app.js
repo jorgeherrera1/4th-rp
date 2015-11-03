@@ -5,6 +5,11 @@ var ESC_KEY = 27;
 $(function () {
 	'use strict';
 
+	ResourcePlan.defaults = {
+		RESOURCE_NAME: 'Resource',
+	  RESOURCE_ROLE: 'Developer'
+	};
+
 	var today = new Date();
 	var numberOfWeeks = 4;
 	var resources = new ResourcePlan.Resources([
