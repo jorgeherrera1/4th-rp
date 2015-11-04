@@ -8,6 +8,8 @@ var ResourcePlan = ResourcePlan || {};
     el: '#bookings-worksheet',
 
     initialize: function() {
+      this.weekEndingsTemplate = _.template($('#worksheet-week-endings-template').html());
+
       this.$weekEndings = this.$('table thead');
       this.$worksheet = this.$('table tbody');
       this.$totals = this.$('table tfoot');
@@ -16,9 +18,16 @@ var ResourcePlan = ResourcePlan || {};
     },
 
     render: function() {
+      this.renderWeekEndings();
       this.renderResourceBookings();
 
       return this;
+    },
+
+    renderWeekEndings: function() {
+      this.$weekEndings.html(this.weekEndingsTemplate({
+        weekEndings: ResourcePlan.weekEndings()
+      }));
     },
 
     renderResourceBookings: function() {

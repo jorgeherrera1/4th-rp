@@ -128,7 +128,7 @@ describe('Bookings Collection', function() {
   });
 
   it('should create an array of bookings given date and number of weeks', function() {
-    var bookings = ResourcePlan.Bookings.newFromDate(new Date('09/29/2015'), 2);
+    var bookings = ResourcePlan.Bookings.fromWeek('09/29/2015', 2);
 
     expect(bookings.length).toBe(10);
     // first week

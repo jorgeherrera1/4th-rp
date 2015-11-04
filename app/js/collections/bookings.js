@@ -70,15 +70,25 @@ var ResourcePlan = ResourcePlan || {};
       var lastBookingDate = this.last().get('date');
       var nextWeek = moment(lastBookingDate).add(1, 'week');
 
-      this.add(ResourcePlan.Bookings.newFromDate(nextWeek, numberOfWeeks).models);
+      this.add(ResourcePlan.Bookings.fromWeek(nextWeek, numberOfWeeks).models);
     }
 
   }, {
-    newFromDate: function(date, numberOfWeeks) {
-      var bookings = new ResourcePlan.Bookings();
-      var startDate = moment(date).day('Monday');
+    fromWeek: function(date, numberOfWeeks) {
+      var _date;
+
+      if (_.isString(date)) {
+        _date = moment(date, 'MM/DD/YYYY');
+      }
+
+      if (_.isDate(date) || moment.isMoment(date)) {
+        _date = moment(date);
+      }
+
+      var startDate = moment(_date).day('Monday');
       var endDate = moment(startDate).add(numberOfWeeks - 1, 'weeks').day('Friday');
 
+      var bookings = new ResourcePlan.Bookings();
       moment.range(startDate, endDate).by('days', function(day) {
         // ignore sunday and saturday
         if (day.day() === 0 || day.day() === 6) {

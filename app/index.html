@@ -24,6 +24,16 @@
     <button id="add-week">Add Week</button>
   </div>
 
+  <script type="text/template" id="worksheet-week-endings-template">
+    <tr>
+      <th>Resource Name</th>
+      <th>Role</th>
+      <% for (var weekNumber in weekEndings) { %>
+        <th><%= weekEndings[weekNumber] %></th>
+      <% } %>
+    </tr>
+  </script>
+
   <script type="text/template" id="resource-bookings-template">
     <td>
       <input type="text" class="resource-name" value="<%= name %>">
