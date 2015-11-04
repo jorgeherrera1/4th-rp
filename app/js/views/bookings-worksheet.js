@@ -7,12 +7,18 @@ var ResourcePlan = ResourcePlan || {};
 
     el: '#bookings-worksheet',
 
+    events: {
+      'click #add-resource': 'addResourceButtonClicked'
+    },
+
     initialize: function() {
       this.weekEndingsTemplate = _.template($('#worksheet-week-endings-template').html());
 
       this.$weekEndings = this.$('table thead');
       this.$worksheet = this.$('table tbody');
       this.$totals = this.$('table tfoot');
+
+      this.listenTo(this.collection, 'add', this.addResourceToView);
 
       this.render();
     },
@@ -33,11 +39,21 @@ var ResourcePlan = ResourcePlan || {};
     renderResourceBookings: function() {
       var that = this;
       this.collection.each(function(resource) {
-        var resourceBookingsView = new ResourcePlan.ResourceBookingsView({
-          model: resource
-        });
+        that.addResourceToView(resource);
+      });
+    },
 
-        that.$worksheet.append(resourceBookingsView.render().el);
+    addResourceToView: function(resource) {
+      var resourceBookingsView = new ResourcePlan.ResourceBookingsView({
+        model: resource
+      });
+
+      this.$worksheet.append(resourceBookingsView.render().el);
+    },
+
+    addResourceButtonClicked: function() {
+      this.collection.add({
+        bookings: ResourcePlan.Bookings.fromWeek(ResourcePlan.firstWeek, ResourcePlan.numberOfWeeks)
       });
     }
 
