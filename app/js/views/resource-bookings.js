@@ -16,7 +16,8 @@ var ResourcePlan = ResourcePlan || {};
     },
 
     initialize: function() {
-      this.on('bookingChanged', this.renderTotalHours);
+      this.listenTo(this.model, 'bookingChangedForWeek', this.renderTotalHours);
+      this.listenTo(this.model, 'bookingsExtended', this.render);
     },
 
     render: function() {
@@ -47,12 +48,7 @@ var ResourcePlan = ResourcePlan || {};
       var weekEnding = $input.data('week-ending');
       var hours = parseInt($input.val());
 
-      var bookings = this.model.get('bookings').filter(function(booking) {
-        return booking.weekEnding() === weekEnding;
-      });
-
-      _.invoke(bookings, 'set', 'hours', hours/5);
-      this.trigger('bookingChanged');
+      this.model.changeBookingForWeek(weekEnding, hours);
     }
 
   });

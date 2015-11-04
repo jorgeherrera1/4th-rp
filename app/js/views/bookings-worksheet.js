@@ -8,7 +8,8 @@ var ResourcePlan = ResourcePlan || {};
     el: '#bookings-worksheet',
 
     events: {
-      'click #add-resource': 'addResourceButtonClicked'
+      'click #add-resource': 'addResourceButtonClicked',
+      'click #add-week': 'addWeekButtonClicked'
     },
 
     initialize: function() {
@@ -55,6 +56,13 @@ var ResourcePlan = ResourcePlan || {};
       this.collection.add({
         bookings: ResourcePlan.Bookings.fromWeek(ResourcePlan.firstWeek, ResourcePlan.numberOfWeeks)
       });
+    },
+
+    addWeekButtonClicked: function() {
+      ResourcePlan.numberOfWeeks++;
+
+      this.collection.invoke('extendBookings');
+      this.renderWeekEndings();
     }
 
   });
